@@ -2,9 +2,7 @@ package com.rhappdeveloper.podcastapp.data.remote.dto
 
 
 import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 
-@Serializable
 data class Extra(
     @SerialName("amazon_music_url")
     val amazonMusicUrl: String,

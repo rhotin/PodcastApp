@@ -2,9 +2,7 @@ package com.rhappdeveloper.podcastapp.data.remote.dto
 
 
 import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 
-@Serializable
 data class PodcastDto(
     @SerialName("has_next")
     val hasNext: Boolean,

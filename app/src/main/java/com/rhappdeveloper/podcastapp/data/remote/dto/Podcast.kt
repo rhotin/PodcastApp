@@ -1,9 +1,7 @@
 package com.rhappdeveloper.podcastapp.data.remote.dto
 
 import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 
-@Serializable
 data class Podcast(
     @SerialName("audio_length_sec")
     val audioLengthSec: Int,
