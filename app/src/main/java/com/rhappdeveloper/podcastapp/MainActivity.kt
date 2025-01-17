@@ -40,11 +40,17 @@ class MainActivity : ComponentActivity() {
                         startDestination = PodcastScreenRoute
                     ) {
                         composable<PodcastScreenRoute> {
-                            PodcastScreen(podcasts, navigationController)
+                            PodcastScreen(
+                                podcasts,
+                                navigationController
+                            )
                         }
                         composable<PodcastDetailScreenRoute> {
                             val args = it.toRoute<PodcastDetailScreenRoute>()
-                            PodcastDetailScreen(args.id)
+                            PodcastDetailScreen(
+                                args.id,
+                                navController = navigationController
+                            )
                         }
                     }
                 }

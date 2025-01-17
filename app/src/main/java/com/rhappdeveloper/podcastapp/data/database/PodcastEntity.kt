@@ -10,6 +10,7 @@ data class PodcastEntity(
     val apiId: String,
     val title: String,
     val publisherName: String,
+    val description: String,
     val icon: String,
     val isFavourite: Boolean = false
 )

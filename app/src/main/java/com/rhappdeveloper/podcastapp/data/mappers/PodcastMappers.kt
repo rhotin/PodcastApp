@@ -9,6 +9,7 @@ fun Podcast.toPodcastEntity(): PodcastEntity {
         apiId = id,
         title = title,
         publisherName = publisher,
+        description = description,
         icon = image,
         isFavourite = false
     )
@@ -20,6 +21,7 @@ fun PodcastEntity.toPodcasts(): com.rhappdeveloper.podcastapp.domain.Podcast {
         apiId = apiId,
         title = title,
         publisherName = publisherName,
+        description = description,
         icon = icon,
         isFavourite = isFavourite
     )
