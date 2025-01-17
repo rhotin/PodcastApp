@@ -26,4 +26,13 @@ class PodcastDetailViewModel @Inject constructor(
             }
         }
     }
+
+    fun updatePodcast(podcast: PodcastEntity) {
+        viewModelScope.launch {
+            podcastDatabase.withTransaction {
+                podcastDatabase.dao.upsertPodcast(podcast)
+                _item.value = podcast
+            }
+        }
+    }
 }

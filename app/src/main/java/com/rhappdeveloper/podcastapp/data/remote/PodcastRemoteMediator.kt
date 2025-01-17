@@ -50,9 +50,9 @@ class PodcastRemoteMediator(
             )
 
             podcastDatabase.withTransaction {
-                if (loadType == LoadType.REFRESH) {
-                    podcastDatabase.dao.clearAll()
-                }
+//                if (loadType == LoadType.REFRESH) {
+//                    podcastDatabase.dao.clearAll()
+//                }
                 val podcastEntity = podcasts.podcasts.map { it.toPodcastEntity() }
                 podcastDatabase.dao.upsertAll(podcastEntity)
             }

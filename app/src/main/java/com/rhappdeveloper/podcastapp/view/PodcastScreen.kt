@@ -16,8 +16,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
@@ -63,8 +66,31 @@ fun PodcastScreen(podcasts: LazyPagingItems<Podcast>, navigationController: NavH
                     contentType = podcasts.itemContentType()
                 ) { index ->
                     ListItem(
-                        headlineContent = { podcasts[index]?.let { Text(text = it.title) } },
-                        supportingContent = { podcasts[index]?.let { Text(text = it.publisherName) } },
+                        overlineContent = {
+                            podcasts[index]?.let {
+                                Text(
+                                    text = it.title,
+                                    fontSize = 20.sp
+                                )
+                            }
+                        },
+                        headlineContent = {
+                            podcasts[index]?.let {
+                                Text(
+                                    text = it.publisherName,
+                                    fontSize = 15.sp
+                                )
+                            }
+                        },
+                        supportingContent = {
+                            podcasts[index]?.let {
+                                Text(
+                                    text = if (it.isFavourite) stringResource(R.string.favourited)
+                                    else "",
+                                    color = Color.Red
+                                )
+                            }
+                        },
                         leadingContent = {
                             Image(
                                 painter = rememberAsyncImagePainter(
