@@ -101,18 +101,6 @@ fun PodcastScreen(podcasts: LazyPagingItems<Podcast>, navigationController: NavH
                                     .size(50.dp)
                                     .clip(RoundedCornerShape(10.dp)),
                             )
-//                            Image(
-//                                painter = rememberAsyncImagePainter(
-//                                    model = ImageRequest.Builder(context)
-//                                        .data(podcasts[index]?.icon)
-//                                        .error(R.drawable.play_icon)
-//                                        .build()
-//                                ),
-//                                contentDescription = "Remote Image",
-//                                modifier = Modifier
-//                                    .size(50.dp)
-//                                    .clip(RoundedCornerShape(10.dp))
-//                            )
                         },
                         modifier = Modifier.clickable {
                             podcasts[index]?.let {
@@ -122,11 +110,6 @@ fun PodcastScreen(podcasts: LazyPagingItems<Podcast>, navigationController: NavH
                                     )
                                 )
                             }
-//                            podcasts[index]?.let {
-//                                Toast
-//                                    .makeText(context, it.title, Toast.LENGTH_SHORT)
-//                                    .show()
-//                            }
                         }
                     )
                 }
