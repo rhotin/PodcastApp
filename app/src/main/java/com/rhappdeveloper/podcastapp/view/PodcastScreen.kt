@@ -20,11 +20,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
@@ -32,9 +35,10 @@ import coil.compose.rememberAsyncImagePainter
 import com.rhappdeveloper.podcastapp.PodcastDetailScreenRoute
 import com.rhappdeveloper.podcastapp.R
 import com.rhappdeveloper.podcastapp.domain.Podcast
+import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable
-fun PodcastScreen(podcasts: LazyPagingItems<Podcast>, navigationController: NavHostController) {
+fun PodcastScreen(podcasts: LazyPagingItems<Podcast>, navigationController: NavHostController?) {
     val context = LocalContext.current
     LaunchedEffect(key1 = podcasts.loadState) {
         if (podcasts.loadState.refresh is LoadState.Error) {
@@ -104,7 +108,7 @@ fun PodcastScreen(podcasts: LazyPagingItems<Podcast>, navigationController: NavH
                         },
                         modifier = Modifier.clickable {
                             podcasts[index]?.let {
-                                navigationController.navigate(
+                                navigationController?.navigate(
                                     PodcastDetailScreenRoute(
                                         id = it.id
                                     )
@@ -121,4 +125,27 @@ fun PodcastScreen(podcasts: LazyPagingItems<Podcast>, navigationController: NavH
             }
         }
     }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun PodcastPreview() {
+    PodcastScreen(
+        podcasts = MutableStateFlow(
+            PagingData.from(
+                listOf(
+                    Podcast(
+                        1,
+                        "abc123",
+                        "title of book",
+                        "publisher",
+                        "long description about the book",
+                        "",
+                        false
+                    )
+                )
+            )
+        ).collectAsLazyPagingItems(),
+        navigationController = null
+    )
 }
